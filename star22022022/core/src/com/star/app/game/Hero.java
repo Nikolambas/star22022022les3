@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.star.app.screen.ScreenManager;
@@ -20,6 +21,20 @@ public class Hero {
     private float fireTimer;
     private int score;
     private int scoreView;
+    private int HP;
+    private Circle hitArea;
+
+    public void setHP(int HP) {
+        this.HP -= HP;
+    }
+
+    public int getHP() {
+        return HP;
+    }
+
+    public Circle getHitArea() {
+        return hitArea;
+    }
 
     public int getScore() {
         return score;
@@ -48,6 +63,10 @@ public class Hero {
         this.velocity = new Vector2(0, 0);
         this.angle = 0.0f;
         this.enginePower = 700.0f;
+        this.HP=100;
+        this.hitArea=new Circle();
+        this.hitArea.setPosition(position.x,position.y);
+        this.hitArea.setRadius(64);
     }
 
     public void addScore(int amount) {
