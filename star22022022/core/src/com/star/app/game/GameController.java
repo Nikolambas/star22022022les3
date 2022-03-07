@@ -44,6 +44,18 @@ public class GameController {
         asteroidController.update(dt);
         hero.update(dt);
         checkCollisions();
+        checkAsteroidHitHero();
+    }
+
+    private void checkAsteroidHitHero() {
+        for (int i = 0; i < asteroidController.getActiveList().size(); i++) {
+            Asteroid a = asteroidController.getActiveList().get(i);
+            if(a.getHitArea().contains(hero.getPosition())){
+                hero.setHP(10);
+                a.takeDamage(10);
+            }
+        }
+
     }
 
 
